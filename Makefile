@@ -1,15 +1,12 @@
 VERSION := 1.40
 TARGET_DIR := $(HOME)/.local/bin
 
-hledger-linux-x64.zip:
-	wget https://github.com/simonmichael/hledger/releases/download/$(VERSION)/hledger-linux-x64.zip
+hledger-linux-x64.tar.gz:
+	wget https://github.com/simonmichael/hledger/releases/download/$(VERSION)/hledger-linux-x64.tar.gz
 
-hledger-linux-x64.tar: hledger-linux-x64.zip
-	unzip hledger-linux-x64.zip
-
-bin/hledger: hledger-linux-x64.tar
+bin/hledger: hledger-linux-x64.tar.gz
 	mkdir bin
-	tar -C bin/ -xf hledger-linux-x64.tar
+	tar -C bin/ -xzf hledger-linux-x64.tar.gz
 
 install: bin/hledger
 	cp -f bin/hledger "$(TARGET_DIR)/"
@@ -18,8 +15,7 @@ install: bin/hledger
 
 clean:
 	rm -rf bin/
-	rm -f hledger-linux-x64.zip
-	rm -f hledger-linux-x64.tar
+	rm -f hledger-linux-x64.tar.gz
 
 version:
 	hledger --version
