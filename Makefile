@@ -1,4 +1,4 @@
-VERSION := 1.34
+VERSION := 1.40
 TARGET_DIR := $(HOME)/.local/bin
 
 hledger-linux-x64.zip:
